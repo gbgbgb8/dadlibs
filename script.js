@@ -21,17 +21,21 @@ function initGame() {
 }
 
 function loadStories() {
-    fetch('stories.json')
-        .then(response => response.json())
-        .then(stories => {
+    const storyFiles = ['story01.json', 'story02.json', 'story03.json']; // List all your story files here
+    const storyPromises = storyFiles.map(storyFile => fetch(storyFile).then(response => response.json()));
+
+    Promise.all(storyPromises)
+        .then(allStories => {
             const storySelectionScreen = document.getElementById('storySelectionScreen');
             storySelectionScreen.innerHTML = '';
-            stories.forEach((story, index) => {
-                const button = document.createElement('button');
-                button.className = 'btn story-button';
-                button.textContent = story.title;
-                button.setAttribute('data-story-id', index);
-                storySelectionScreen.appendChild(button);
+            allStories.forEach((stories, index) => {
+                stories.forEach(story => {
+                    const button = document.createElement('button');
+                    button.className = 'btn story-button';
+                    button.textContent = story.title;
+                    button.setAttribute('data-story-id', `${index}-${story.title}`); // Unique ID for each story
+                    storySelectionScreen.appendChild(button);
+                });
             });
         })
         .catch(error => {
@@ -39,6 +43,7 @@ function loadStories() {
             document.getElementById('errorMessage').style.display = 'block';
         });
 }
+
 
 function selectStory(storyId) {
     fetch('stories.json')

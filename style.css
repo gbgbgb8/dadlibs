@@ -1,4 +1,4 @@
-/* Base styles for the game container */
+
 #gameContainer {
     max-width: 600px;
     margin: auto;
@@ -6,13 +6,13 @@
     text-align: center;
 }
 
-/* Header styles */
+
 header h1 {
     font-size: 2em;
     margin-bottom: 20px;
 }
 
-/* Button styles */
+
 .btn {
     margin: 5px;
     padding: 10px 15px;
@@ -23,36 +23,36 @@ header h1 {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Styles for selected buttons */
+
 .selected {
     background-color: lightgreen;
     color: white;
 }
 
-/* Loading and error message styles */
+
 #loadingIndicator, #errorMessage {
     margin-top: 20px;
     font-size: 1.2em;
 }
 
-/* Dark mode styles */
+
 .dark-mode {
-    background-color: #121212; /* Dark background */
-    color: #ffffff; /* Light text */
+    background-color: #121212;
+    color: #ffffff;
 }
 
 .dark-mode .btn {
-    background-color: #333333; /* Darker buttons */
+    background-color: #333333;
     color: #ffffff;
     border-color: #646464;
 }
 
 .dark-mode .btn.selected {
-    background-color: lightblue; /* Contrast color for selected button */
+    background-color: lightblue;
     color: black;
 }
 
-/* Media query for responsive design */
+
 @media (max-width: 768px) {
     #gameContainer {
         padding: 10px;

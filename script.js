@@ -29,38 +29,46 @@ function handleGameClick(event) {
 }
 
 function loadStories() {
-    const storyFiles = ['story00.json', 'story01.json', 'story02.json'];
-    const storyPromises = storyFiles.map(storyFile => fetch(storyFile).then(response => {
-        if (!response.ok) {
-            throw new Error(`Story file ${storyFile} not found`);
-        }
-        return response.json();
-    }).catch(error => {
-        console.error(`Error loading ${storyFile}:`, error.message);
-        displayErrorMessage();
-        return null;
-    }));
+    const storyFiles = ['story01.json', 'story02.json', 'story03.json'];
+    const storyPromises = storyFiles.map(storyFile => 
+        fetch(storyFile)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Story file ${storyFile} not found`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error(`Error loading ${storyFile}:`, error.message);
+                displayErrorMessage();
+                return null;
+            })
+    );
 
-    Promise.all(storyPromises).then(allStories => {
-        displayStorySelection(allStories.filter(Boolean));
-        document.getElementById('errorMessage').style.display = 'none';
-    }).catch(error => {
-        console.error('Error processing stories:', error);
-        displayErrorMessage();
-    });
+    Promise.all(storyPromises)
+        .then(allStories => {
+            displayStorySelection(allStories);
+            document.getElementById('errorMessage').style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Error processing stories:', error);
+            displayErrorMessage();
+        });
 }
 
 function displayStorySelection(allStories) {
     const storySelectionScreen = document.getElementById('storySelectionScreen');
     storySelectionScreen.innerHTML = '';
     allStories.forEach((stories, index) => {
-        stories.forEach(story => {
-            const button = document.createElement('button');
-            button.className = 'btn story-button';
-            button.textContent = story.title;
-            button.setAttribute('data-story-id', `story${String(index).padStart(2, '0')}-${story.title}`);
-            storySelectionScreen.appendChild(button);
-        });
+        if (stories) {
+            stories.forEach(story => {
+                const button = document.createElement('button');
+                button.className = 'btn story-button';
+                button.textContent = story.title;
+                button.setAttribute('data-story-id', `${index}-${story.title}`);
+                storySelectionScreen.appendChild(button);
+            });
+        }
     });
 }
 
@@ -69,11 +77,13 @@ function displayErrorMessage() {
 }
 
 function selectStory(storyId) {
-    const [storyFile, title] = storyId.split('-');
+    const [fileIndex, title] = storyId.split('-');
+    const storyFile = `story${fileIndex.padStart(2, '0')}.json`;
+
     fetch(storyFile)
         .then(response => response.json())
-        .then(storyData => {
-            currentStory = storyData.find(story => story.title === title);
+        .then(allStories => {
+            currentStory = allStories.find(story => story.title === title);
             displayWordSelection();
         })
         .catch(error => {
@@ -104,12 +114,16 @@ function displayWordSelection() {
 function selectWord(wordType, selectedWord) {
     const wordTypePrefix = wordType.split('-')[0];
     selectedWords[wordType] = selectedWord;
+
     document.querySelectorAll(`[data-word-type^="${wordTypePrefix}-"]`).forEach(button => {
         button.classList.remove('selected');
     });
+
     event.target.classList.add('selected');
+
     checkIfAllWordsSelected();
 }
+
 
 function checkIfAllWordsSelected() {
     const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));
@@ -121,8 +135,7 @@ function checkIfAllWordsSelected() {
 function assembleStory() {
     let storyText = currentStory.template;
     Object.entries(selectedWords).forEach(([key, value]) => {
-        const regex = new RegExp(`\\[${key.split('-')[0]}\\]`, 'g');
-        storyText = storyText.replace(regex, value);
+        storyText = storyText.replace(new RegExp(`\\[${key.split('-')[0]}\\]`, 'g'), value);
     });
     displayFinalStory(storyText);
 }

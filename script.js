@@ -15,6 +15,11 @@ function setupEventListeners() {
     gameContainer.addEventListener('click', handleGameClick);
 }
 
+function toggleDarkMode() {
+    const gameContainer = document.getElementById('gameContainer');
+    gameContainer.classList.toggle('dark-mode');
+}
+
 function handleGameClick(event) {
     if (event.target.matches('.story-button')) {
         selectStory(event.target.getAttribute('data-story-id'));

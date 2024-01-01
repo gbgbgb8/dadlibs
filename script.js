@@ -33,7 +33,7 @@ function loadStories() {
             })
             .catch(error => {
                 console.warn(`Error loading ${storyFile}:`, error.message);
-                return null; // Return null for failed fetches
+                return null;
             })
     );
 
@@ -42,7 +42,7 @@ function loadStories() {
             const storySelectionScreen = document.getElementById('storySelectionScreen');
             storySelectionScreen.innerHTML = '';
             allStories.forEach((stories, index) => {
-                if (stories) { // Check if stories is not null
+                if (stories) {
                     stories.forEach(story => {
                         const button = document.createElement('button');
                         button.className = 'btn story-button';
@@ -58,13 +58,15 @@ function loadStories() {
         });
 }
 
-
-
 function selectStory(storyId) {
-    fetch('stories.json')
+    // Split storyId to get the index and title
+    const [index, title] = storyId.split('-');
+    const storyFile = `story0${index}.json`;
+
+    fetch(storyFile)
         .then(response => response.json())
-        .then(stories => {
-            currentStory = stories[storyId];
+        .then(allStories => {
+            currentStory = allStories.find(story => story.title === title);
             const wordSelectionScreen = document.getElementById('wordSelectionScreen');
             wordSelectionScreen.innerHTML = '';
             currentStory.blanks.forEach((wordType, index) => {

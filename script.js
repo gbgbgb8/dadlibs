@@ -21,28 +21,43 @@ function initGame() {
 }
 
 function loadStories() {
-    const storyFiles = ['story01.json', 'story02.json', 'story03.json']; // List all your story files here
-    const storyPromises = storyFiles.map(storyFile => fetch(storyFile).then(response => response.json()));
+    const storyFiles = ['story01.json', 'story02.json', 'story03.json']; // Add your story file names here
+
+    const storyPromises = storyFiles.map(storyFile => 
+        fetch(storyFile)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Story file ${storyFile} not found`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.warn(`Error loading ${storyFile}:`, error.message);
+                return null; // Return null for failed fetches
+            })
+    );
 
     Promise.all(storyPromises)
         .then(allStories => {
             const storySelectionScreen = document.getElementById('storySelectionScreen');
             storySelectionScreen.innerHTML = '';
             allStories.forEach((stories, index) => {
-                stories.forEach(story => {
-                    const button = document.createElement('button');
-                    button.className = 'btn story-button';
-                    button.textContent = story.title;
-                    button.setAttribute('data-story-id', `${index}-${story.title}`); // Unique ID for each story
-                    storySelectionScreen.appendChild(button);
-                });
+                if (stories) { // Check if stories is not null
+                    stories.forEach(story => {
+                        const button = document.createElement('button');
+                        button.className = 'btn story-button';
+                        button.textContent = story.title;
+                        button.setAttribute('data-story-id', `${index}-${story.title}`);
+                        storySelectionScreen.appendChild(button);
+                    });
+                }
             });
         })
         .catch(error => {
-            console.error('Error loading stories:', error);
-            document.getElementById('errorMessage').style.display = 'block';
+            console.error('Error processing stories:', error);
         });
 }
+
 
 
 function selectStory(storyId) {

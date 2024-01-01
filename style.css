@@ -1,0 +1,41 @@
+
+
+
+#gameContainer {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.btn {
+    margin: 5px;
+}
+
+
+.selected {
+    background-color: lightgreen;
+    color: white;
+}
+
+
+#loadingIndicator {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #5755d9;
+}
+
+
+#errorMesssage {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: red;
+}
+
+
+@media (max-width: 768px) {
+    #gameContainer {
+        padding: 10px;
+    }
+}

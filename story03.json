@@ -1,0 +1,11 @@
+{
+    "title": "My Life as a Caveman",
+    "template": "Living as a caveman was no easy feat, especially since my [noun] was always [verb]. I started each day with a hearty breakfast of [adjective] [plural noun] before heading out to [verb] with my trusty [noun]. One day, I stumbled upon a [adjective] [noun], which I decided to keep as a pet. It wasn't all [adjective] [plural noun] and [noun] though; cave life was full of dangers, like the time a [adjective] [noun] challenged me to a [verb] contest. To everyone's surprise, I [verb] and became the [adjective] [noun] of my tribe. That evening, we celebrated with a huge feast of [adjective] [plural noun] and danced under the [noun] until the [noun] came up.",
+    "blanks": ["noun", "verb", "adjective", "plural noun", "verb", "noun", "adjective", "noun", "adjective", "plural noun", "noun", "adjective", "noun", "verb", "verb", "adjective", "noun", "adjective", "plural noun", "noun", "noun"],
+    "options": {
+        "noun": ["club", "boulder", "fire", "wheel", "cave painting", "sabertooth", "mammoth", "moon", "sun"],
+        "verb": ["grunting", "hunting", "painting", "inventing", "dancing", "won"],
+        "adjective": ["furry", "gigantic", "hungry", "mysterious", "victorious", "roasted", "starry"],
+        "plural noun": ["berries", "mammoths", "bonfires", "rocks", "stars"]
+    }
+}

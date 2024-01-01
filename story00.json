@@ -1,15 +1,13 @@
-[
-    {
-        "title": "A Strange Day in the Park",
-        "template": "Today, I went to the park. On my way, I saw a [adjective] [noun]. It was [verb] by the [place]. Then, I met a [occupation] who was [adjective] about [area of study].",
-        "blanks": ["adjective", "noun", "verb", "place", "occupation", "adjective", "area of study"],
-        "options": {
-            "adjective": ["quirky", "enormous", "sneaky", "colorful"],
-            "noun": ["squirrel", "balloon", "robot", "bicycle"],
-            "verb": ["dancing", "singing", "running", "sleeping"],
-            "place": ["lake", "merry-go-round", "fountain", "bench"],
-            "occupation": ["chef", "astronaut", "teacher", "musician"],
-            "area of study": ["quantum mechanics", "culinary arts", "world history", "jazz music"]
-        }
+{
+    "title": "My Big Day Out",
+    "template": "It was a [adjective] morning when I decided to go on a big adventure. I grabbed my [noun] and headed out to the [place]. Along the way, I encountered a [adjective] [noun] that was [verb] in the middle of the sidewalk. 'How [adjective]!', I thought. When I arrived at the [place], I saw a [noun] offering [noun] rides. I hopped on, and we [verb] into the sky, [verb] past [plural noun]. The view was so [adjective] that I nearly dropped my [noun]. After that, I visited a nearby [place] where I enjoyed a [adjective] lunch of [food] and [food]. As the day ended, I found myself [verb] to the music of a [adjective] street performer. It was truly an unforgettable day!",
+    "blanks": ["adjective", "noun", "place", "adjective", "noun", "verb", "adjective", "place", "noun", "noun", "verb", "verb", "plural noun", "adjective", "noun", "place", "adjective", "food", "food", "verb", "adjective"],
+    "options": {
+        "adjective": ["sunny", "peculiar", "breathtaking", "whimsical"],
+        "noun": ["backpack", "map", "unicorn", "telescope"],
+        "place": ["zoo", "museum", "aquarium", "amusement park"],
+        "verb": ["juggling", "dancing", "singing", "soaring"],
+        "plural noun": ["balloons", "clouds", "birds", "kites"],
+        "food": ["spaghetti", "chocolate cake", "sushi", "giant pretzel"]
     }
-]
+}

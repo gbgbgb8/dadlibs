@@ -6,8 +6,24 @@
     <title>DadLibs</title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .dark-mode {
+            background-color: #121212; /* Dark background */
+            color: #ffffff; /* Light text */
+        }
+
+        .dark-mode .btn {
+            background-color: #333333; /* Darker buttons */
+            color: #ffffff;
+        }
+
+        .dark-mode .btn.selected {
+            background-color: lightblue; /* Contrast color for selected button */
+            color: black;
+        }
+    </style>
 </head>
-<body>
+<body class="dark-mode">
     <div id="gameContainer" class="container">
         <header>
             <h1>DadLibs</h1>
@@ -23,9 +39,13 @@
         <div id="errorMessage" style="display:none;">
             <p>Error loading stories. Please try again later.</p>
         </div>
+        <button id="darkModeToggle" class="btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
     </div>
-    <button id="darkModeToggle" class="btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-
     <script src="script.js"></script>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initGame() {
+    document.getElementById('gameContainer').classList.add('dark-mode');
     loadStories();
     setupEventListeners();
 }
@@ -13,11 +14,6 @@ function initGame() {
 function setupEventListeners() {
     const gameContainer = document.getElementById('gameContainer');
     gameContainer.addEventListener('click', handleGameClick);
-}
-
-function toggleDarkMode() {
-    const gameContainer = document.getElementById('gameContainer');
-    gameContainer.classList.toggle('dark-mode');
 }
 
 function handleGameClick(event) {
@@ -43,7 +39,7 @@ function loadStories() {
                 return response.json();
             })
             .catch(error => {
-                console.warn(`Error loading ${storyFile}:`, error.message);
+                console.error(`Error loading ${storyFile}:`, error.message);
                 displayErrorMessage();
                 return null;
             })
@@ -52,6 +48,7 @@ function loadStories() {
     Promise.all(storyPromises)
         .then(allStories => {
             displayStorySelection(allStories);
+            document.getElementById('errorMessage').style.display = 'none';
         })
         .catch(error => {
             console.error('Error processing stories:', error);
@@ -115,12 +112,17 @@ function displayWordSelection() {
 }
 
 function selectWord(wordType, selectedWord) {
+    const wordTypePrefix = wordType.split('-')[0];
     selectedWords[wordType] = selectedWord;
-    document.querySelectorAll(`[data-word-type^="${wordType.split('-')[0]}"]`).forEach(button => {
+    document.querySelectorAll(`[data-word-type^="${wordTypePrefix}"]`).forEach(button => {
         button.classList.remove('selected');
     });
     document.querySelector(`[data-word-type="${wordType}"]`).classList.add('selected');
-    const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords[`${type}-${index}`]);
+    checkIfAllWordsSelected();
+}
+
+function checkIfAllWordsSelected() {
+    const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));
     if (allBlanksFilled) {
         assembleStory();
     }
@@ -128,19 +130,17 @@ function selectWord(wordType, selectedWord) {
 
 function assembleStory() {
     let storyText = currentStory.template;
-    for (const key in selectedWords) {
-        storyText = storyText.replace(`[${key.split('-')[0]}]`, selectedWords[key]);
-    }
+    Object.entries(selectedWords).forEach(([key, value]) => {
+        storyText = storyText.replace(new RegExp(`\\[${key.split('-')[0]}\\]`, 'g'), value);
+    });
     displayFinalStory(storyText);
 }
 
 function displayFinalStory(storyText) {
     const finalStoryScreen = document.getElementById('finalStoryScreen');
     finalStoryScreen.innerHTML = `<p>${storyText}</p>`;
-    const shareButton = createButton('Share Story', 'shareButton');
-    finalStoryScreen.appendChild(shareButton);
-    const playAgainButton = createButton('Play Again', 'playAgainButton');
-    finalStoryScreen.appendChild(playAgainButton);
+    finalStoryScreen.appendChild(createButton('Share Story', 'shareButton'));
+    finalStoryScreen.appendChild(createButton('Play Again', 'playAgainButton'));
     document.getElementById('wordSelectionScreen').style.display = 'none';
     finalStoryScreen.style.display = 'block';
 }

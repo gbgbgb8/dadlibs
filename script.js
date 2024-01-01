@@ -7,22 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initGame() {
     loadStories();
-    document.getElementById('gameContainer').addEventListener('click', (event) => {
-        if (event.target.matches('.story-button')) {
-            selectStory(event.target.getAttribute('data-story-id'));
-        } else if (event.target.matches('.word-button')) {
-            selectWord(event.target.getAttribute('data-word-type'), event.target.textContent);
-        } else if (event.target.matches('#playAgainButton')) {
-            playAgain();
-        } else if (event.target.matches('#shareButton')) {
-            shareStory();
-        }
-    });
+    setupEventListeners();
+}
+
+function setupEventListeners() {
+    const gameContainer = document.getElementById('gameContainer');
+    gameContainer.addEventListener('click', handleGameClick);
+}
+
+function handleGameClick(event) {
+    if (event.target.matches('.story-button')) {
+        selectStory(event.target.getAttribute('data-story-id'));
+    } else if (event.target.matches('.word-button')) {
+        selectWord(event.target.getAttribute('data-word-type'), event.target.textContent);
+    } else if (event.target.matches('#playAgainButton')) {
+        playAgain();
+    } else if (event.target.matches('#shareButton')) {
+        shareStory();
+    }
 }
 
 function loadStories() {
-    const storyFiles = ['story01.json', 'story02.json', 'story03.json']; // Add your story file names here
-
+    const storyFiles = ['story01.json', 'story02.json', 'story03.json'];
     const storyPromises = storyFiles.map(storyFile => 
         fetch(storyFile)
             .then(response => {
@@ -33,58 +39,74 @@ function loadStories() {
             })
             .catch(error => {
                 console.warn(`Error loading ${storyFile}:`, error.message);
+                displayErrorMessage();
                 return null;
             })
     );
 
     Promise.all(storyPromises)
         .then(allStories => {
-            const storySelectionScreen = document.getElementById('storySelectionScreen');
-            storySelectionScreen.innerHTML = '';
-            allStories.forEach((stories, index) => {
-                if (stories) {
-                    stories.forEach(story => {
-                        const button = document.createElement('button');
-                        button.className = 'btn story-button';
-                        button.textContent = story.title;
-                        button.setAttribute('data-story-id', `${index}-${story.title}`);
-                        storySelectionScreen.appendChild(button);
-                    });
-                }
-            });
+            displayStorySelection(allStories);
         })
         .catch(error => {
             console.error('Error processing stories:', error);
+            displayErrorMessage();
         });
 }
 
+function displayStorySelection(allStories) {
+    const storySelectionScreen = document.getElementById('storySelectionScreen');
+    storySelectionScreen.innerHTML = '';
+    allStories.forEach((stories, index) => {
+        if (stories) {
+            stories.forEach(story => {
+                const button = document.createElement('button');
+                button.className = 'btn story-button';
+                button.textContent = story.title;
+                button.setAttribute('data-story-id', `${index}-${story.title}`);
+                storySelectionScreen.appendChild(button);
+            });
+        }
+    });
+}
+
+function displayErrorMessage() {
+    document.getElementById('errorMessage').style.display = 'block';
+}
+
 function selectStory(storyId) {
-    // Extract file index and story title
     const [fileIndex, title] = storyId.split('-');
-    const storyFile = `story${fileIndex.padStart(2, '0')}.json`; // Correcting file index
+    const storyFile = `story${fileIndex.padStart(2, '0')}.json`;
 
     fetch(storyFile)
         .then(response => response.json())
         .then(allStories => {
             currentStory = allStories.find(story => story.title === title);
-            const wordSelectionScreen = document.getElementById('wordSelectionScreen');
-            wordSelectionScreen.innerHTML = '';
-            currentStory.blanks.forEach((wordType, index) => {
-                const div = document.createElement('div');
-                div.innerHTML = `<p>Choose a ${wordType}:</p>`;
-                currentStory.options[wordType].forEach(word => {
-                    const button = document.createElement('button');
-                    button.className = 'btn word-button';
-                    button.textContent = word;
-                    button.setAttribute('data-word-type', `${wordType}-${index}`);
-                    div.appendChild(button);
-                });
-                wordSelectionScreen.appendChild(div);
-            });
-            document.getElementById('storySelectionScreen').style.display = 'none';
-            wordSelectionScreen.style.display = 'block';
+            displayWordSelection();
         })
-        .catch(error => console.error('Error loading story:', error));
+        .catch(error => {
+            console.error('Error loading story:', error);
+            displayErrorMessage();
+        });
+}
+
+function displayWordSelection() {
+    const wordSelectionScreen = document.getElementById('wordSelectionScreen');
+    wordSelectionScreen.innerHTML = '';
+    currentStory.blanks.forEach((wordType, index) => {
+        const div = document.createElement('div');
+        div.innerHTML = `<p>Choose a ${wordType}:</p>`;
+        currentStory.options[wordType].forEach(word => {
+            const button = document.createElement('button');
+            button.className = 'btn word-button';
+            button.textContent = word;
+            button.setAttribute('data-word-type', `${wordType}-${index}`);
+            div.appendChild(button);
+        });
+        wordSelectionScreen.appendChild(div);
+    });
+    document.getElementById('storySelectionScreen').style.display = 'none';
+    wordSelectionScreen.style.display = 'block';
 }
 
 function selectWord(wordType, selectedWord) {
@@ -104,19 +126,26 @@ function assembleStory() {
     for (const key in selectedWords) {
         storyText = storyText.replace(`[${key.split('-')[0]}]`, selectedWords[key]);
     }
-    document.getElementById('finalStoryScreen').innerHTML = `<p>${storyText}</p>`;
-    const shareButton = document.createElement('button');
-    shareButton.id = 'shareButton';
-    shareButton.className = 'btn';
-    shareButton.textContent = 'Share Story';
-    document.getElementById('finalStoryScreen').appendChild(shareButton);
-    const playAgainButton = document.createElement('button');
-    playAgainButton.id = 'playAgainButton';
-    playAgainButton.className = 'btn';
-    playAgainButton.textContent = 'Play Again';
-    document.getElementById('finalStoryScreen').appendChild(playAgainButton);
+    displayFinalStory(storyText);
+}
+
+function displayFinalStory(storyText) {
+    const finalStoryScreen = document.getElementById('finalStoryScreen');
+    finalStoryScreen.innerHTML = `<p>${storyText}</p>`;
+    const shareButton = createButton('Share Story', 'shareButton');
+    finalStoryScreen.appendChild(shareButton);
+    const playAgainButton = createButton('Play Again', 'playAgainButton');
+    finalStoryScreen.appendChild(playAgainButton);
     document.getElementById('wordSelectionScreen').style.display = 'none';
-    document.getElementById('finalStoryScreen').style.display = 'block';
+    finalStoryScreen.style.display = 'block';
+}
+
+function createButton(text, id) {
+    const button = document.createElement('button');
+    button.id = id;
+    button.className = 'btn';
+    button.textContent = text;
+    return button;
 }
 
 function playAgain() {

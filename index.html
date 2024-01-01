@@ -9,10 +9,14 @@
 </head>
 <body>
     <div id="gameContainer" class="container">
-        <h1>DadLibs</h1>
-        <div id="storySelectionScreen"></div>
-        <div id="wordSelectionScreen" style="display:none;"></div>
-        <div id="finalStoryScreen" style="display:none;"></div>
+        <header>
+            <h1>DadLibs</h1>
+        </header>
+        <main>
+            <div id="storySelectionScreen" aria-label="Story Selection"></div>
+            <div id="wordSelectionScreen" style="display:none;" aria-label="Word Selection"></div>
+            <div id="finalStoryScreen" style="display:none;" aria-label="Final Story"></div>
+        </main>
         <div id="loadingIndicator" style="display:none;">
             <p>Loading...</p>
         </div>
@@ -20,7 +24,6 @@
             <p>Error loading stories. Please try again later.</p>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

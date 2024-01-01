@@ -59,8 +59,9 @@ function loadStories() {
 }
 
 function selectStory(storyId) {
+    // Extract file index and story title
     const [fileIndex, title] = storyId.split('-');
-    const storyFile = `story${fileIndex}.json`;
+    const storyFile = `story${fileIndex.padStart(2, '0')}.json`; // Correcting file index
 
     fetch(storyFile)
         .then(response => response.json())

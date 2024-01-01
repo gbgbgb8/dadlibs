@@ -29,8 +29,8 @@ function handleGameClick(event) {
 }
 
 function loadStories() {
-    const storyFiles = ['story01.json', 'story02.json', 'story03.json'];
-    const storyPromises = storyFiles.map(storyFile => 
+    const storyFiles = ['story00.json', 'story01.json', 'story02.json', 'story03.json'];
+    const storyPromises = storyFiles.map((storyFile, index) => 
         fetch(storyFile)
             .then(response => {
                 if (!response.ok) {
@@ -40,50 +40,48 @@ function loadStories() {
             })
             .catch(error => {
                 console.error(`Error loading ${storyFile}:`, error.message);
-                displayErrorMessage();
-                return null;
+                displayErrorMessage(`Error loading story ${index + 1}. Please try again later.`);
+                return [];
             })
     );
 
     Promise.all(storyPromises)
         .then(allStories => {
+            allStories = allStories.flat();
             displayStorySelection(allStories);
             document.getElementById('errorMessage').style.display = 'none';
         })
         .catch(error => {
             console.error('Error processing stories:', error);
-            displayErrorMessage();
+            displayErrorMessage('Error processing stories. Please try again later.');
         });
 }
 
 function displayStorySelection(allStories) {
     const storySelectionScreen = document.getElementById('storySelectionScreen');
     storySelectionScreen.innerHTML = '';
-    allStories.forEach((stories, index) => {
-        if (stories) {
-            stories.forEach(story => {
-                const button = document.createElement('button');
-                button.className = 'btn story-button';
-                button.textContent = story.title;
-                button.setAttribute('data-story-id', `${index}-${story.title}`);
-                storySelectionScreen.appendChild(button);
-            });
-        }
+    allStories.forEach((story, index) => {
+        const button = document.createElement('button');
+        button.className = 'btn story-button';
+        button.textContent = story.title;
+        button.setAttribute('data-story-id', `story${String(index).padStart(2, '0')}`);
+        storySelectionScreen.appendChild(button);
     });
 }
 
-function displayErrorMessage() {
-    document.getElementById('errorMessage').style.display = 'block';
+function displayErrorMessage(message) {
+    const errorMessageDiv = document.getElementById('errorMessage');
+    errorMessageDiv.textContent = message;
+    errorMessageDiv.style.display = 'block';
 }
 
 function selectStory(storyId) {
-    const [fileIndex, title] = storyId.split('-');
-    const storyFile = `story${fileIndex.padStart(2, '0')}.json`;
+    const storyFile = `${storyId}.json`;
 
     fetch(storyFile)
         .then(response => response.json())
-        .then(allStories => {
-            currentStory = allStories.find(story => story.title === title);
+        .then(storyData => {
+            currentStory = storyData;
             displayWordSelection();
         })
         .catch(error => {
@@ -114,16 +112,12 @@ function displayWordSelection() {
 function selectWord(wordType, selectedWord) {
     const wordTypePrefix = wordType.split('-')[0];
     selectedWords[wordType] = selectedWord;
-
     document.querySelectorAll(`[data-word-type^="${wordTypePrefix}-"]`).forEach(button => {
         button.classList.remove('selected');
     });
-
     event.target.classList.add('selected');
-
     checkIfAllWordsSelected();
 }
-
 
 function checkIfAllWordsSelected() {
     const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));

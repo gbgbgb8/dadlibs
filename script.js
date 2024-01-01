@@ -114,12 +114,16 @@ function displayWordSelection() {
 function selectWord(wordType, selectedWord) {
     const wordTypePrefix = wordType.split('-')[0];
     selectedWords[wordType] = selectedWord;
-    document.querySelectorAll(`[data-word-type^="${wordTypePrefix}"]`).forEach(button => {
+
+    document.querySelectorAll(`[data-word-type^="${wordTypePrefix}-"]`).forEach(button => {
         button.classList.remove('selected');
     });
-    document.querySelector(`[data-word-type="${wordType}"]`).classList.add('selected');
+
+    event.target.classList.add('selected');
+
     checkIfAllWordsSelected();
 }
+
 
 function checkIfAllWordsSelected() {
     const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));

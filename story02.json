@@ -1,0 +1,13 @@
+{
+    "title": "My Trip to the Moon",
+    "template": "Yesterday, I took an [adjective] trip to the moon! I rode on a [noun] powered by [noun]. When I landed, I couldn't believe my eyes; there were [plural noun] everywhere! They were [verb] and [verb], which was quite a sight. On the moon, I met a [noun] named [name]. [Name] showed me around the lunar [place] and taught me how to [verb]. Before I left, [name] gave me a souvenir, a [adjective] [noun], which I'll always treasure. The journey back to Earth was [adjective], especially when we passed through a [noun] storm!",
+    "blanks": ["adjective", "noun", "noun", "plural noun", "verb", "verb", "noun", "name", "place", "verb", "name", "adjective", "noun", "adjective", "noun"],
+    "options": {
+        "adjective": ["bumpy", "sparkly", "weightless", "cheesy"],
+        "noun": ["space scooter", "rocket", "banana peel", "teacup"],
+        "plural noun": ["aliens", "moon pies", "stars", "craters"],
+        "verb": ["floating", "dancing", "burping", "yodeling"],
+        "name": ["Zorg", "Luna", "Astro", "Buzz"],
+        "place": ["base", "observatory", "arcade", "cantina"]
+    }
+}

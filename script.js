@@ -118,12 +118,18 @@ function selectWord(wordType, selectedWord) {
     checkIfAllWordsSelected();
 }
 
-
 function checkIfAllWordsSelected() {
-   const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));
-   if (allBlanksFilled) {
-       assembleStory();
-   }
+    const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));
+    if (allBlanksFilled) {
+        showDadLibItButton();
+    }
+}
+
+function showDadLibItButton() {
+    const wordSelectionScreen = document.getElementById('wordSelectionScreen');
+    const dadLibItButton = createButton('DadLib It!', 'dadLibItButton');
+    dadLibItButton.addEventListener('click', assembleStory);
+    wordSelectionScreen.appendChild(dadLibItButton);
 }
 
 function assembleStory() {
@@ -132,7 +138,9 @@ function assembleStory() {
         storyText = storyText.replace(new RegExp(`\\[${key}\\]`, 'g'), value);
     });
     displayFinalStory(storyText);
+    document.getElementById('dadLibItButton').style.display = 'none'; // Hide the button after use
 }
+
 
 function displayFinalStory(storyText) {
    const finalStoryScreen = document.getElementById('finalStoryScreen');
@@ -152,10 +160,15 @@ function createButton(text, id) {
 }
 
 function playAgain() {
-   selectedWords = {};
-   document.getElementById('finalStoryScreen').style.display = 'none';
-   document.getElementById('storySelectionScreen').style.display = 'block';
+    selectedWords = {};
+    document.getElementById('finalStoryScreen').style.display = 'none';
+    document.getElementById('storySelectionScreen').style.display = 'block';
+    const dadLibItButton = document.getElementById('dadLibItButton');
+    if (dadLibItButton) {
+        dadLibItButton.style.display = 'block';
+    }
 }
+
 
 function shareStory() {
     const storyText = document.querySelector('#finalStoryScreen p').textContent;

@@ -1,13 +1,23 @@
 {
     "title": "My Trip to the Moon",
-    "template": "Yesterday, I took an [adjective] trip to the moon! I rode on a [noun] powered by [noun]. When I landed, I couldn't believe my eyes; there were [plural noun] everywhere! They were [verb] and [verb], which was quite a sight. On the moon, I met a [noun] named [name]. [Name] showed me around the lunar [place] and taught me how to [verb]. Before I left, [name] gave me a souvenir, a [adjective] [noun], which I'll always treasure. The journey back to Earth was [adjective], especially when we passed through a [noun] storm!",
-    "blanks": ["adjective", "noun", "noun", "plural noun", "verb", "verb", "noun", "name", "place", "verb", "name", "adjective", "noun", "adjective", "noun"],
+    "template": "Yesterday, I embarked on an [adjective-1] journey to the moon. My vessel was a [noun-1] with a [adjective-2] engine. As I [verb-1] through space, I saw [plural noun-1] and [plural noun-2] outside my window. Upon landing, I was greeted by a [noun-2] named [name-1], who was [verb-2] on the surface. We explored the [adjective-3] landscape, finding [plural noun-3] and even a [noun-3]. [Name-1] showed me the [noun-4], where we [verb-3] until it was time to return. The trip back was [adjective-4], especially when we flew past a [noun-5]!",
+    "blanks": ["adjective-1", "noun-1", "adjective-2", "verb-1", "plural noun-1", "plural noun-2", "noun-2", "name-1", "verb-2", "adjective-3", "plural noun-3", "noun-3", "noun-4", "verb-3", "adjective-4", "noun-5"],
     "options": {
-        "adjective": ["bumpy", "sparkly", "weightless", "cheesy"],
-        "noun": ["space scooter", "rocket", "banana peel", "teacup"],
-        "plural noun": ["aliens", "moon pies", "stars", "craters"],
-        "verb": ["floating", "dancing", "burping", "yodeling"],
-        "name": ["Zorg", "Luna", "Astro", "Buzz"],
-        "place": ["base", "observatory", "arcade", "cantina"]
+        "adjective-1": ["thrilling", "breathtaking", "unbelievable"],
+        "noun-1": ["spacecraft", "shuttle", "starship"],
+        "adjective-2": ["hyper-speed", "glowing", "solar-powered"],
+        "verb-1": ["soared", "glided", "zoomed"],
+        "plural noun-1": ["comets", "planets", "stars"],
+        "plural noun-2": ["asteroids", "space debris", "galaxies"],
+        "noun-2": ["moon creature", "astronaut", "space ranger"],
+        "name-1": ["Galaxia", "Orbiton", "Lunarina"],
+        "verb-2": ["jumping", "dancing", "hovering"],
+        "adjective-3": ["mysterious", "alien", "crater-filled"],
+        "plural noun-3": ["moon rocks", "alien artifacts", "space crystals"],
+        "noun-3": ["lunar rover", "alien ship", "space flag"],
+        "noun-4": ["lunar base", "observatory", "space cantina"],
+        "verb-3": ["chatted", "conducted experiments", "played space games"],
+        "adjective-4": ["smooth", "adventurous", "hair-raising"],
+        "noun-5": ["black hole", "nebula", "satellite"]
     }
 }

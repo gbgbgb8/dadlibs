@@ -15,7 +15,7 @@
    - Make a list of the types of words needed for the placeholders, such as `[noun]`, `[verb]`, `[adjective]`, etc.
 
 5. **Create Word Options:**
-   - For each type of placeholder, provide a selection of words that fit the context and enhance the silliness of the story.
+   - For each type of placeholder, provide a selection of words that fit the context and enhance the silliness of the story. Don't repeat any of the words.
 
 6. **Format as JSON:**
    - Structure the story and word options in JSON format, suitable for loading into your DadLibs game.
@@ -25,7 +25,7 @@
 
 ---
 
-Now, following the recipe above, here's a sample `story02.json` for your game:
+Now, following the recipe above, here's a sample `story02.json` for the game:
 
 ```json
 {

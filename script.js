@@ -115,13 +115,14 @@ function selectWord(wordType, selectedWord) {
         button.classList.remove('selected');
     });
     event.target.classList.add('selected');
-    checkIfAllWordsSelected();
+    checkIfAllWordsSelected(); 
 }
 
 function checkIfAllWordsSelected() {
     const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));
-    if (allBlanksFilled) {
-        showDadLibItButton();
+    const dadLibItButton = document.getElementById('dadLibItButton');
+    if (dadLibItButton) {
+        dadLibItButton.style.display = allBlanksFilled ? 'block' : 'none';
     }
 }
 

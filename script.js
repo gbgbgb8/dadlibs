@@ -141,7 +141,6 @@ function assembleStory() {
     document.getElementById('dadLibItButton').style.display = 'none'; // Hide the button after use
 }
 
-
 function displayFinalStory(storyText) {
    const finalStoryScreen = document.getElementById('finalStoryScreen');
    finalStoryScreen.innerHTML = `<p>${storyText}</p>`;
@@ -169,10 +168,8 @@ function playAgain() {
     }
 }
 
-
 function shareStory() {
     const storyText = document.querySelector('#finalStoryScreen p').textContent;
     const shareText = `${document.location.origin}${document.location.pathname}?story=${encodeURIComponent(currentStory.title)}&words=${encodeURIComponent(JSON.stringify(selectedWords))}`;
     navigator.clipboard.writeText(shareText);
- }
- 
+}

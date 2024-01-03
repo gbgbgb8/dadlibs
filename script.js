@@ -91,22 +91,22 @@ function selectStory(storyId) {
 }
 
 function displayWordSelection() {
-   const wordSelectionScreen = document.getElementById('wordSelectionScreen');
-   wordSelectionScreen.innerHTML = '';
-   currentStory.blanks.forEach((wordType, index) => {
-       const div = document.createElement('div');
-       div.innerHTML = `<p>Choose a ${wordType}:</p>`;
-       currentStory.options[wordType].forEach(word => {
-           const button = document.createElement('button');
-           button.className = 'btn word-button';
-           button.textContent = word;
-           button.setAttribute('data-word-type', `${wordType}-${index}`);
-           div.appendChild(button);
-       });
-       wordSelectionScreen.appendChild(div);
-   });
-   document.getElementById('storySelectionScreen').style.display = 'none';
-   wordSelectionScreen.style.display = 'block';
+    const wordSelectionScreen = document.getElementById('wordSelectionScreen');
+    wordSelectionScreen.innerHTML = '';
+    currentStory.blanks.forEach(wordType => {
+        const div = document.createElement('div');
+        div.innerHTML = `<p>Choose a ${wordType.split('-')[0]}:</p>`;
+        currentStory.options[wordType].forEach(word => {
+            const button = document.createElement('button');
+            button.className = 'btn word-button';
+            button.textContent = word;
+            button.setAttribute('data-word-type', wordType);
+            div.appendChild(button);
+        });
+        wordSelectionScreen.appendChild(div);
+    });
+    document.getElementById('storySelectionScreen').style.display = 'none';
+    wordSelectionScreen.style.display = 'block';
 }
 
 function selectWord(wordType, selectedWord) {
@@ -127,11 +127,11 @@ function checkIfAllWordsSelected() {
 }
 
 function assembleStory() {
-   let storyText = currentStory.template;
-   Object.entries(selectedWords).forEach(([key, value]) => {
-       storyText = storyText.replace(new RegExp(`\\[${key.split('-')[0]}\\]`, 'g'), value);
-   });
-   displayFinalStory(storyText);
+    let storyText = currentStory.template;
+    Object.entries(selectedWords).forEach(([key, value]) => {
+        storyText = storyText.replace(new RegExp(`\\[${key}\\]`, 'g'), value);
+    });
+    displayFinalStory(storyText);
 }
 
 function displayFinalStory(storyText) {

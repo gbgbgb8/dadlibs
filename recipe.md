@@ -1,44 +1,50 @@
-### Recipe for Creating New DadLibs Stories
+# Recipe for Creating New DadLibs Stories
 
-1. **Define the Title:**
-   - Start with a catchy and descriptive title that sets the tone for your story. For example: "My Trip to the Moon".
+## Overview
+Creating a story for DadLibs involves crafting a fun narrative with blanks for players to fill. The new format allows each blank to have its unique set of word options, enhancing the gameplay experience.
 
-2. **Craft the Story Template:**
-   - Write a two or three-paragraph story with a silly and whimsical narrative.
-   - Ensure that it has a clear beginning, middle, and end for a complete narrative arc.
+## Steps
 
-3. **Identify the Blanks:**
-   - Select words or phrases in the story that can be replaced with placeholders.
-   - Common placeholders include adjectives, nouns, verbs, adverbs, places, and names.
+### 1. Define the Title
+- Start with a catchy and descriptive title that sets the tone for your story. 
+- Example: "My Trip to the Moon".
 
-4. **Organize Placeholders:**
-   - Make a list of the types of words needed for the placeholders, such as `[noun]`, `[verb]`, `[adjective]`, etc.
+### 2. Craft the Story Template
+- Write a two or three-paragraph story with a whimsical narrative.
+- Include a clear beginning, middle, and end.
 
-5. **Create Word Options:**
-   - For each type of placeholder, provide a selection of words that fit the context and enhance the silliness of the story. Don't repeat any of the words.
+### 3. Identify the Blanks
+- Select words or phrases in the story to replace with placeholders.
+- Common placeholders are adjectives, nouns, verbs, adverbs, places, and names.
 
-6. **Format as JSON:**
-   - Structure the story and word options in JSON format, suitable for loading into your DadLibs game.
+### 4. Organize Placeholders
+- Create a list of placeholders in your story, formatted as `[wordType-index]`.
+- Example: `[noun-1]`, `[verb-1]`, `[adjective-1]`.
 
-7. **Review and Test:**
-   - Proofread the story and test it in the game to ensure it provides a fun and engaging experience.
+### 5. Create Unique Word Options
+- For each placeholder, provide a unique set of words.
+- Ensure no repetition of words across different placeholders of the same type.
+
+### 6. Format as JSON
+- Structure your story in JSON format with the title, template, blanks, and options.
+- Each set of options should be keyed by its corresponding placeholder.
+
+### 7. Review and Test
+- Proofread your story and test it in the DadLibs game.
+- Ensure it provides a fun and engaging experience.
 
 ---
 
-Now, following the recipe above, here's a sample `story02.json` for the game:
+## Example JSON Structure
 
 ```json
 {
     "title": "My Trip to the Moon",
-    "template": "Yesterday, I took an [adjective] trip to the moon! I rode on a [noun] powered by [noun]. When I landed, I couldn't believe my eyes; there were [plural noun] everywhere! They were [verb] and [verb], which was quite a sight. On the moon, I met a [noun] named [name]. [Name] showed me around the lunar [place] and taught me how to [verb]. Before I left, [name] gave me a souvenir, a [adjective] [noun], which I'll always treasure. The journey back to Earth was [adjective], especially when we passed through a [noun] storm!",
-    "blanks": ["adjective", "noun", "noun", "plural noun", "verb", "verb", "noun", "name", "place", "verb", "name", "adjective", "noun", "adjective", "noun"],
+    "template": "Yesterday, I took an [adjective-1] trip to the moon! I rode on a [noun-1] powered by [noun-2].",
+    "blanks": ["adjective-1", "noun-1", "noun-2"],
     "options": {
-        "adjective": ["bumpy", "sparkly", "weightless", "cheesy"],
-        "noun": ["space scooter", "rocket", "banana peel", "teacup"],
-        "plural noun": ["aliens", "moon pies", "stars", "craters"],
-        "verb": ["floating", "dancing", "burping", "yodeling"],
-        "name": ["Zorg", "Luna", "Astro", "Buzz"],
-        "place": ["base", "observatory", "arcade", "cantina"]
+        "adjective-1": ["bumpy", "sparkly", "weightless"],
+        "noun-1": ["space scooter", "rocket", "shuttle"],
+        "noun-2": ["banana peel", "teacup", "asteroid"]
     }
 }
-```

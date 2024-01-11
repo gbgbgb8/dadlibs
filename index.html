@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DadLibs</title>
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
@@ -23,7 +24,7 @@
         <div id="errorMessage" style="display:none;">
             <p>Error loading stories. Please try again later.</p>
         </div>
-        <button id="darkModeToggle" class="btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button id="darkModeToggle" class="btn" onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Toggle Dark Mode</button>
     </div>
     <script src="script.js"></script>
     <script>

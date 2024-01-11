@@ -86,7 +86,7 @@ function selectStory(storyId) {
        })
        .catch(error => {
            console.error('Error loading story:', error);
-           displayErrorMessage();
+           displayErrorMessage('Error loading story. Please try again.');
        });
 }
 
@@ -101,6 +101,7 @@ function displayWordSelection() {
             button.className = 'btn word-button';
             button.textContent = word;
             button.setAttribute('data-word-type', wordType);
+            button.setAttribute('aria-label', `Choose word: ${word}`); // Accessibility improvement
             div.appendChild(button);
         });
         wordSelectionScreen.appendChild(div);
@@ -119,7 +120,7 @@ function selectWord(wordType, selectedWord) {
 }
 
 function checkIfAllWordsSelected() {
-    const allBlanksFilled = currentStory.blanks.every((type, index) => selectedWords.hasOwnProperty(`${type}-${index}`));
+    const allBlanksFilled = currentStory.blanks.every(wordType => selectedWords.hasOwnProperty(wordType));
     const dadLibItButton = document.getElementById('dadLibItButton');
     if (dadLibItButton) {
         dadLibItButton.style.display = allBlanksFilled ? 'block' : 'none';

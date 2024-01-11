@@ -1,3 +1,14 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+}
+
+header h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
 
 #gameContainer {
     max-width: 600px;
@@ -5,13 +16,6 @@
     padding: 20px;
     text-align: center;
 }
-
-
-header h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
 
 .btn {
     margin: 5px;
@@ -21,38 +25,38 @@ header h1 {
     border: 1px solid transparent;
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s;
+    background-color: #e0f4ff; /* soft blue */
+    color: #333;
 }
-
 
 .selected {
-    background-color: lightgreen;
-    color: white;
+    background-color: #cceeff; /* slightly darker blue for selected items */
+    color: #333;
 }
-
 
 #loadingIndicator, #errorMessage {
     margin-top: 20px;
     font-size: 1.2em;
 }
 
-
+/* Dark Mode */
 .dark-mode {
     background-color: #121212;
-    color: #ffffff;
+    color: #f0f0f0;
 }
 
 .dark-mode .btn {
-    background-color: #333333;
+    background-color: #00ced1; /* bright teal */
     color: #ffffff;
     border-color: #646464;
 }
 
-.dark-mode .btn.selected {
-    background-color: lightblue;
-    color: black;
+.dark-mode .selected {
+    background-color: #20b2aa; /* lighter teal for selected items */
+    color: #ffffff;
 }
 
-
+/* Responsive Design */
 @media (max-width: 768px) {
     #gameContainer {
         padding: 10px;
@@ -64,5 +68,6 @@ header h1 {
 
     .btn {
         font-size: 0.9em;
+        padding: 12px 20px;
     }
 }

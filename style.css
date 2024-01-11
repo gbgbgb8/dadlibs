@@ -1,73 +1,27 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    color: #333;
-    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
 }
 
-header h1 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-#gameContainer {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-}
-
-.btn {
-    margin: 5px;
-    padding: 10px 15px;
-    font-size: 1em;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-    background-color: #e0f4ff; /* soft blue */
-    color: #333;
-}
-
-.selected {
-    background-color: #cceeff; /* slightly darker blue for selected items */
-    color: #333;
-}
-
-#loadingIndicator, #errorMessage {
+#app {
     margin-top: 20px;
-    font-size: 1.2em;
 }
 
-/* Dark Mode */
 .dark-mode {
-    background-color: #121212;
-    color: #f0f0f0;
+    background-color: #2c3e50;
+    color: #ecf0f1;
 }
 
-.dark-mode .btn {
-    background-color: #00ced1; /* bright teal */
-    color: #ffffff;
-    border-color: #646464;
+.story-button {
+    margin: 5px;
 }
 
-.dark-mode .selected {
-    background-color: #20b2aa; /* lighter teal for selected items */
-    color: #ffffff;
+#word-selection, #story-output {
+    display: none;
+    margin-top: 20px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    #gameContainer {
-        padding: 10px;
-    }
-
-    header h1 {
-        font-size: 1.5em;
-    }
-
-    .btn {
-        font-size: 0.9em;
-        padding: 12px 20px;
+@media only screen and (max-width: 600px) {
+    .form-horizontal .form-group {
+        display: block;
     }
 }

@@ -1,0 +1,14 @@
+{
+    "stories": [
+      {
+        "title": "My Trip to the Moon",
+        "template": "It was a [adjective-1] day when I boarded the [noun-1]. The journey was [adjective-2]...",
+        "blanks": {
+          "adjective-1": ["exciting", "bizarre", "sunny"],
+          "noun-1": ["rocket", "spaceship", "shuttle"],
+          "adjective-2": ["long", "thrilling", "tedious"]
+        }
+      }
+    ]
+  }
+  

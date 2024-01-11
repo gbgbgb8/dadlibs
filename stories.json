@@ -1,12 +1,49 @@
 {
     "stories": [
       {
-        "title": "My Trip to the Moon",
-        "template": "It was a [adjective-1] day when I boarded the [noun-1]. The journey was [adjective-2]...",
+        "title": "The Great Spaghetti Incident",
+        "template": "Once upon a time in a [adjective-1] kingdom, a [noun-1] decided to cook the world's largest spaghetti. First, they filled a [adjective-2] pot with water and set it to boil. Suddenly, a [noun-2] jumped out and shouted, 'Don't forget to add [pluralNoun-1]!' The [noun-1] was [emotion-1], but they added the [pluralNoun-1] anyway. As the pot bubbled, a [animal-1] wearing a [clothingItem-1] danced around, singing a song about [pluralNoun-2]. The smell of the spaghetti attracted a [adjective-3] [profession-1], who proclaimed, 'This will be perfect for the [event-1]!' And that's how the [adjective-4] spaghetti became a [noun-3] legend.",
         "blanks": {
-          "adjective-1": ["exciting", "bizarre", "sunny"],
-          "noun-1": ["rocket", "spaceship", "shuttle"],
-          "adjective-2": ["long", "thrilling", "tedious"]
+          "adjective-1": ["quirky", "colorful", "eccentric"],
+          "noun-1": ["chef", "wizard", "scientist"],
+          "adjective-2": ["gigantic", "polka-dotted", "ancient"],
+          "noun-2": ["genie", "pirate", "robot"],
+          "pluralNoun-1": ["marshmallows", "rubber ducks", "glitter"],
+          "emotion-1": ["perplexed", "delighted", "baffled"],
+          "animal-1": ["kangaroo", "flamingo", "unicorn"],
+          "clothingItem-1": ["tutu", "top hat", "cape"],
+          "pluralNoun-2": ["bananas", "tacos", "moonbeams"],
+          "adjective-3": ["jolly", "mysterious", "famous"],
+          "profession-1": ["astronaut", "detective", "magician"],
+          "event-1": ["tea party", "space mission", "circus show"],
+          "adjective-4": ["legendary", "infamous", "unforgettable"],
+          "noun-3": ["town", "galaxy", "circus"]
+        }
+      },
+      {
+        "title": "The Mysterious Case of the Vanishing Socks",
+        "template": "In the [adjective-1] town of Socksville, socks were vanishing at an alarming rate. Detective [personName-1], known for their [adjective-2] [bodyPart-1], took on the case. The first clue was a [color-1] sock found in the [place-1]. 'Aha!' exclaimed [personName-1], 'This sock smells like [foodItem-1].' They followed the scent to a [adjective-3] [noun-1], only to find a [animal-1] wearing socks on its [pluralBodyPart-1]. 'Excuse me, have you seen any [color-2] socks?' asked the detective. The [animal-1] just [verb-1] and pointed towards the [adjective-4] [place-2]. In the end, it turned out that a [noun-2] had been using the socks to [verb-2] for the upcoming [event-1]. Everyone in Socksville laughed and decided to celebrate with a [adjective-5] [event-2].",
+        "blanks": {
+          "adjective-1": ["sleepy", "bustling", "whimsical"],
+          "personName-1": ["Sherlock", "Agatha", "Watson"],
+          "adjective-2": ["sharp", "sparkly", "keen"],
+          "bodyPart-1": ["eye", "nose", "ear"],
+          "color-1": ["striped", "polka-dotted", "neon"],
+          "place-1": ["library", "bakery", "garden"],
+          "foodItem-1": ["chocolate", "garlic bread", "pickles"],
+          "adjective-3": ["creaky", "hidden", "abandoned"],
+          "noun-1": ["house", "cave", "treehouse"],
+          "animal-1": ["squirrel", "parrot", "llama"],
+          "pluralBodyPart-1": ["paws", "wings", "feet"],
+          "color-2": ["fuzzy", "glowing", "rainbow"],
+          "verb-1": ["giggled", "sneezed", "danced"],
+          "adjective-4": ["enchanting", "spooky", "ancient"],
+          "place-2": ["castle", "attic", "greenhouse"],
+          "noun-2": ["goblin", "robot", "fairy"],
+          "verb-2": ["build a fort", "practice magic tricks", "host a tea party"],
+          "event-1": ["festival", "concert", "magic show"],
+          "adjective-5": ["joyous", "silly", "magical"],
+          "event-2": ["sock hop", "banquet", "parade"]
         }
       }
     ]

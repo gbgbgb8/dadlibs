@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     let currentStory = null;
 
+    // Enable dark mode by default
+    document.body.classList.add('dark-mode');
+
     // Fetch stories and populate selection
     fetch('stories.json')
         .then(response => response.json())

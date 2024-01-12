@@ -11,6 +11,12 @@ body {
     color: #ecf0f1;
 }
 
+.dark-mode select {
+    background-color: #34495e;
+    color: #ecf0f1;
+    border-color: #ecf0f1;
+}
+
 .story-button {
     margin: 5px;
 }
